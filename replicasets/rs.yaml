@@ -2,13 +2,13 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: frontend
-  namespace: devopslab
+  namespace: class20
   labels:
     app: guestbook
     tier: frontend
 spec:
   # modify replicas according to your case
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       tier: frontend
@@ -19,4 +19,5 @@ spec:
     spec:
       containers:
       - name: php-redis
-        image: gcr.io/google_samples/gb-frontend:v3
+        image: gcr.io/google_samples/gb-frontend
+        tag: v3
