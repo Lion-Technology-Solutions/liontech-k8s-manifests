@@ -1,0 +1,18 @@
+
+   apiVersion: v1
+   kind: Service
+   metadata:
+     name: qa
+     namespace: qa
+   spec:
+     selector:
+       app: qa
+     type: NodePort
+     ports:
+     - name: qa
+       protocol: TCP
+       port: 80
+       targetPort: 5000
+       nodePort: 30008
+   
+   

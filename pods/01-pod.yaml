@@ -1,0 +1,23 @@
+# https://kubernetes.io/docs/concepts/workloads/pods/
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "nginx-demo"
+  namespace: qa
+  labels:
+    app: "nginx-demo"
+spec:
+  containers:
+  - name: nginx-demo
+    image: "liontechacademy/liontechclass20:demo-v1"
+    resources:
+      limits:  #HPA -Horizontal port auto scaling
+        cpu: 50m
+        memory: 60Mi
+      requests:
+        cpu: 40m
+        memory: 50Mi
+    ports:
+    - containerPort: 80
+      name: http
+    
