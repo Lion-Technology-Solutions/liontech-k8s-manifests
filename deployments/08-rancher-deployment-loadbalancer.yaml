@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  labels:
+    name: nextcloud-lb
+  name: nextcloudapp-social
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: nextcloudapp
+    spec:
+      containers:
+      - image: liontechacademy/apps:nextcloud-v1.0.0
+        name: nextcloudapp
+        ports:
+        - name: nextcloudapp
+          containerPort: 80 
+---
+# Node Port Service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: nextcloudapp
+  name: nextcloudapp
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: nextcloudapp
