@@ -6,7 +6,7 @@ metadata:
     name: nextcloud-lb
   name: nextcloudapp-social
 spec:
-  replicas: 1
+  replicas: 5
   template:
     metadata:
       labels:
@@ -24,10 +24,10 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: nextcloudapp
+    name: nextcloudapp-service
   name: nextcloudapp
 spec:
-  type: LoadBalancer
+  type: LoadBalancer  #loadBalancer or Loadbalancer 
   ports:
     - port: 80
       targetPort: 80
