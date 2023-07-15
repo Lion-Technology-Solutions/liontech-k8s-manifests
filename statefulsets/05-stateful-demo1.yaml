@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: demo4
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: demo4 # has to match .spec.template.metadata.labels
+  serviceName: "demo4"
+  replicas: 3 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: demo4 # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: demo4
+        image: liontechacademy/webapp:v1
+        ports:
+        - containerPort: 8080
+          name: web
+        volumeMounts:
+        - name: www
+          mountPath: /usr/share/demo4/html
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: demo
+      resources:
+        requests:
+          storage: 1Gi

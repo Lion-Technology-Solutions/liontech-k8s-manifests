@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim   #pvc 
+metadata:
+  name: demo-claim
+  namespace: apps
+  labels:
+    app: demo-claim
+spec:
+  storageClassName: demo
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
