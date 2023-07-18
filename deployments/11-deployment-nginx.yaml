@@ -1,6 +1,6 @@
 # Config Map
-apiVersion: v1
-kind: ConfigMap  
+kind: ConfigMap 
+apiVersion: v1 
 metadata:
   name: springapp-configmap
 data:
@@ -52,7 +52,7 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      NodePort: 30300
+      nodePort: 30300
   selector:
     app: springboot
 ---
