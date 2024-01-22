@@ -24,10 +24,10 @@ spec:
         app: springboot
     spec:
       containers:
-      - image: liontechacademy/webapp:v1
+      - image: liontechacademy/apps:sonarqube-v1.0.1
         name: springboot
         ports:
-        - containerPort: 8080
+        - containerPort: 9000
         env:
         - name: MONGO_DB_HOSTNAME
           value: mongo
@@ -50,9 +50,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
-      targetPort: 8080
-      nodePort: 30500
+    - port: 9000
+      targetPort: 9000
+      nodePort: 31500   # 
   selector:
     app: springboot
 ---
@@ -100,7 +100,7 @@ kind: Service
 metadata:
   name: mongo
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 27017
     targetPort: 27017
